@@ -1,0 +1,97 @@
+<html>
+    <style>
+        body {
+          background-color: lightgrey;
+          font-family: Arial, Helvetica, sans-serif;
+        }
+       
+        h1 {
+          width:75%;
+          color:black;
+          background-color:green;
+          border-style: solid;
+          border-color:black;
+          border-width: 2px;
+        }
+        .container {
+          width: 50%;
+          height:550px;
+          background-color:darkgrey;
+          border-style: double;
+          border-color:black;
+          border-width: 5px;
+        }
+    
+        .prev {
+          width: 50%;
+          height:550px;
+          background-color:darkgrey;
+          border-style: double;
+          border-color:black;
+          border-width: 5px;
+        }
+        .button {
+          width:120px;
+          height:50px;
+          background-color:green;
+          color:black;
+        }
+        .feature-button {
+          width:100px;
+          height:30px;
+          background-color:blue;
+          color:white;
+        }
+        </style>
+        <center>
+          <title>Online Poll Maker</title>
+        <body onload = "load()">
+<div class="container" id="prev">
+    
+    <h1 id="title">example title.</h1>
+    
+      <sub style="text-align:left;">Made with Online Poll Maker by Bob<br></sub><p style="font-size:10px">This content is not created nor endorsed by Online Poll Maker</p>
+    
+    <hr>
+    
+    <br>
+    <p id="question">example question: is red your favorite color?</p>
+    <br>
+    <button class="button" onclick="alert('this is just a demo!')" id="option1">example option 1</button>&nbsp;&nbsp;<button class="button" onclick="alert('this is just a demo!');" id="option2">example option 2</button></button>
+    <br><br><br><br><br>
+    <sub id="respondamt"></sub>
+    
+    
+      </div>
+    </center>
+      </body>
+      <script>
+        function load() {
+          let title = getParameterByName('title'); // "lorem"
+        document.getElementById("title").innerHTML = title;
+        let question = getParameterByName('q'); // "lorem"
+        document.getElementById("question").innerHTML = question;
+        let op1 = getParameterByName('op1'); // "lorem"
+        document.getElementById("option1").innerHTML = op1;
+        let op2 = getParameterByName('op2'); // "lorem"
+        document.getElementById("option2").innerHTML = op2;
+        let checked = getParameterByName('ro'); // "lorem"
+        if(checked == "true") {
+        document.getElementById("respondamt").innerHTML = "Note: You can only repond once.";
+        } else if (checked == "false"){
+          document.getElementById("respondamt").innerHTML = "Note: You can repond multiple times.";
+        }
+        
+        }
+
+        function getParameterByName(name, url = window.location.href) {
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
+        </script>
+      </html>
