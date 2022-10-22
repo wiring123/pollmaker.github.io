@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <style>
+    body {
+      background-color: lightgrey;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+   
+    h1 {
+      width:75%;
+      color:black;
+      background-color:green;
+      border-style: solid;
+      border-color:black;
+      border-width: 2px;
+    }
+    .container {
+      width: 50%;
+      height:200px;
+      background-color:darkgrey;
+      border-style: double;
+      border-color:black;
+      border-width: 5px;
+    }
+    button {
+      width:120px;
+      height:50px;
+      background-color:darkgreen;
+      color:black;
+    }
+    </style>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Online Poll Maker</title>
+  </head>
+  <body onload="load()"><center>
+    <h1>Online Poll Maker</h1>
+
+ 
+  <hr>
+  <br>
+  <div class="container">
+Create polls for free for ever at no cost! Simple to use, just customize and your done! Share it with friends, family, colleagues, etc. The link never expires! Polls are a great way to ask questions and get answers either professionally or just for fun. Online Poll Maker requires no login, no additional information and is 100% free and online. Online Poll Maker generates a personal link that never expries and can be shared via email, text, or any other way of sending messages. <b>Start now by clicking below:</b><br><br>
+<button onclick="window.open('dashboard.html','_self')" id="create">Go To Dashboard</button>
+  </div>
+  
+  </body>
+  <script>
+    var color = 0;
+    function load() {
+      var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+		var element = document.getElementById('text');
+		if (isMobile) {
+  			window.open("/error.html" , "_self");
+		} else {
+setTimeout(colorChange, 500);
+    }
+    }
+function colorChange() {
+  if(color == "0") {
+    
+document.getElementById("create").style.backgroundColor = "darkgreen";
+color=1;
+  } else {
+    document.getElementById("create").style.backgroundColor = "green";
+    color=0;
+
+  }
+  setTimeout(colorChange, 500);
+}
+
+    </script>
+  </html>
