@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <style>
+    body {
+      background-color: lightgrey;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+   
+    h1 {
+      width:75%;
+      color:black;
+      background-color:green;
+      border-style: solid;
+      border-color:black;
+      border-width: 2px;
+    }
+    .container {
+      width: 20%;
+      height:250px;
+      background-color:darkgrey;
+      border-style: double;
+      border-color:black;
+      border-width: 5px;
+    }
+    button {
+      width:150px;
+      height:50px;
+      background-color:green;
+      color:white;
+    }
+    </style>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Online Poll Maker</title>
+  </head>
+  <body onload="load()"><center>
+    <h1>Online Poll Maker</h1>
+
+ 
+  <hr>
+  <br>
+  <div class="container">
+  Oh No! It seems like you are using a mobile device! Online Poll Maker does not support mobile devices! Try using a laptop or desktop computer!<br><br>Sorry for the inconvenience,<br> -The Poll Team</b><br><br>
+<button onclick="con()" id="create">Continue anyways?<br>(Not Tested!)</button>
+  </div>
+  
+  </body>
+<script>
+    function load() {
+   
+    }
+    function con() {
+      let confirmation = confirm("Are you sure you want to continue? The mobile version of Online Poll Maker is still un-tested! It may be unusable.")
+    if (confirmation == true) {
+      window.open("dashboard.html", "_self");
+    }
+    }
+
+    </script>
+  </html>
