@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <style>
+    body {
+      background-color: lightgrey;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+   
+    h1 {
+      width:75%;
+      color:black;
+      background-color:green;
+      border-style: solid;
+      border-color:black;
+      border-width: 2px;
+    }
+    .container {
+      width: 80%;
+      height:100000px;
+      background-color:darkgrey;
+      border-style: double;
+      border-color:black;
+      border-width: 5px;
+    }
+    button {
+      width:120px;
+      height:50px;
+      background-color:darkgreen;
+      color:black;
+    }
+    </style>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dashboard</title>
+  </head>
+  <body onload="load()"><center>
+    <h1>Online Poll Maker</h1>
+    <sub>Your Dashboard</sub>
+
+ 
+  <hr>
+  <br>
+  <div class="container">
+    <h3>Your Polls:</h3>
+    <sub>Note: You cannot edit your polls once they have been created! (For now...)</sub>
+    <hr>
+    <br>
+    <br>
+    <p id="my-polls">You have no polls! You should create one!</p>
+    
+    <br><br><br>
+    <button onclick="window.open('create.html','_self')" id="create">Make a Poll</button>
+  </div>
+  
+  </body>
+  <script>
+    var color = 0;
+   
+
+    function load() {
+     
+setTimeout(colorChange, 500);
+let polls = localStorage.getItem("mypolls");
+
+if(polls == null || polls == "null") {
+document.getElementById("my-polls").innerHTML = "You have no polls! You should create one!";
+} else {
+  document.getElementById("my-polls").innerHTML = polls;
+}
+    }
+
+
+function colorChange() {
+  if(color == "0") {
+    
+document.getElementById("create").style.backgroundColor = "darkgreen";
+color=1;
+  } else {
+    document.getElementById("create").style.backgroundColor = "green";
+    color=0;
+
+  }
+  setTimeout(colorChange, 500);
+}
+
+    </script>
+  </html>
