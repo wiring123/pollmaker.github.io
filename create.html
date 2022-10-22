@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <style>
+    body {
+      background-color: lightgrey;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+   
+    h1 {
+      width:75%;
+      color:black;
+      background-color:green;
+      border-style: solid;
+      border-color:black;
+      border-width: 2px;
+    }
+    .container {
+      width: 50%;
+      height:550px;
+      background-color:darkgrey;
+      border-style: double;
+      border-color:black;
+      border-width: 5px;
+    }
+
+    .prev {
+      width: 50%;
+      height:550px;
+      background-color:darkgrey;
+      border-style: double;
+      border-color:black;
+      border-width: 5px;
+    }
+    .button {
+      width:120px;
+      height:50px;
+      background-color:green;
+      color:black;
+    }
+    .feature-button {
+      width:100px;
+      height:30px;
+      background-color:blue;
+      color:white;
+    }
+    </style>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Create A Poll</title>
+  </head>
+  <body onload="load()"><center>
+    <h1>Online Poll Maker</h1>
+  </center>
+<button onclick="dash()">Back to Dashboard</button>
+<center>
+ 
+  <hr>
+  <br>
+  
+  <div id="container" class="container">
+    <br>
+Enter the below settings to create a poll! Just add a title, a question and two options and your set!</b>
+<hr>
+<br>
+<br>
+<sub>Set the title of your poll:</sub>
+<br><input id="polltitle" onchange="changetitle()" placeholder="My Online Poll"></input>
+ 
+<br>
+
+<sub>Set the question for your poll:</sub>
+<br><textarea id="question" onchange="question()" placeholder="Is red your favorite color?"></textarea>
+<br>
+<br>
+<br>
+<hr>
+<br>
+
+
+
+<sub>Option 1 text:</sub>
+<br><input id="option1" onchange="opt1()" placeholder="Yes, it is!"></input>
+<br>
+<br>
+<sub>Option 2 text:</sub>
+<br><input id="option2" onchange="opt2()" placeholder="No, it isn't."></input>
+ <br>
+ <br>
+ <input onchange="check();" type="checkbox" checked="true" id="responseonce">Only allow 1 response per person.</input>
+ <br>
+ <br>
+ ----------------------------------------------
+ <br>
+ <br>
+ <br><button class="feature-button" onclick="prev()">Preview Poll&nbsp;&nbsp;</button>
+ <button onclick="create()" class="feature-button">Create Poll</button></button>
+
+  </div>
+
+
+<br>
+  <div class="container" id="prev">
+    
+<h1 id="demoTitle">example title.</h1>
+
+  <sub style="text-align:left;">Made with Online Poll Maker by Bob<br></sub><p style="font-size:10px">This content is not created nor endorsed by Online Poll Maker</p>
+
+<hr>
+
+<br>
+<p id="demoQuestion">example question: is red your favorite color?</p>
+<br>
+<button class="button" onclick="alert('this is just a demo!')" id="option1Prev">example option 1</button>&nbsp;&nbsp;<button class="button" onclick="alert('this is just a demo!');" id="option2Prev">example option 2</button></button>
+
+
+
+  </div>
+</center>
+  </body>
+  <script>
+    window.addEventListener("beforeunload", (event) => {
+  // set a truthy value to property returnValue
+  event.returnValue = true;
+});
+    let preview = false;
+    let pollTitle = "example: My Online Poll";
+    let pollQuestion = "example: Is red your favorite color?";
+    let pollOption1 = "example: Yes, it is!";
+    let pollOption2 = "example: No, it isn't.";
+    let newPolls = "";
+    let checked = true;
+
+    function check() {
+    checked = document.getElementById("responseonce").checked;
+    }
+
+    function dash() {
+      window.open("dashboard.html", "_self");
+    }
+    function changetitle() {
+      pollTitle = document.getElementById("polltitle").value;
+      if(pollTitle.includes("&")) {
+alert("ERROR: Character '&' is not allowed in the form! Please use 'and' instead!");
+      }
+    }
+    function question() {
+      pollQuestion = document.getElementById("question").value;
+      if(pollQuestion.includes("&")) {
+alert("ERROR: Character '&' is not allowed in the form! Please use 'and' instead!");
+      }
+    }
+    function opt1() {
+      pollOption1 = document.getElementById("option1").value;
+      if(pollOption1.includes("&")) {
+alert("ERROR: Character '&' is not allowed in the form! Please use 'and' instead!");
+      }
+    }
+    function opt2() {
+      pollOption2 = document.getElementById("option2").value;
+      if(pollOption2.includes("&")) {
+alert("ERROR: Character '&' is not allowed in the form! Please use 'and' instead!");
+      }
+    }
+
+
+function create() {
+
+  let url = "https://i6p3rr.csb.app/present.html?title=" + pollTitle + "&q=" + pollQuestion + "&op1=" + pollOption1 + "&op2=" + pollOption2 + "&ro=" + checked;
+  //alert(url)
+  
+
+  let newline = "<br><br>"
+
+  if (preview == false) {
+
+    alert("You have not previewed your poll yet! You should at least take a look at it before you post it!")
+ 
+  } else {
+   
+  let prevPolls = localStorage.getItem("mypolls");
+ 
+  if (prevPolls == "null" || prevPolls == null) {
+  
+     newPolls = url;
+    
+ 
+  } else {
+    
+  
+   newPolls = prevPolls + newline + url;
+ 
+  }
+
+ // alert(newPolls);
+ // localStorage.setItem("mypolls", newPolls);
+
+
+
+  localStorage.setItem("mypolls", newPolls);
+  alert("Your Poll's URL (share it with friends!): " + url);
+  window.open("dashboard.html", "_self");
+ 
+  }
+}
+
+function prev() { 
+   
+   preview=true;
+   document.getElementById("prev").style.visibility='visible';
+   document.getElementById("demoTitle").innerText=pollTitle;
+   document.getElementById("demoQuestion").innerText=pollQuestion;
+   document.getElementById("option1Prev").innerText = pollOption1;
+   document.getElementById("option2Prev").innerText = pollOption2;
+
+ }
+
+ function load() {
+ 
+  document.getElementById("prev").style.visibility='hidden';
+  document.getElementById("container").style.visibility='visible';
+  
+  
+
+ }
+
+    </script>
+  </html>
